@@ -139,7 +139,7 @@ const TwitchClient = (): JSX.Element => {
               sandbox="allow-scripts"
               w="100%"
               h="250px"
-              src={`https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${settings.clientID}&state=${settings.clientID}&redirect_uri=http://localhost:8080/login&scope=channel:read:redemptions+user:read:email`}
+              src={`https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${settings.clientID}&state=${settings.clientID}&redirect_uri=http://localhost:8080/login&scope=channel:read:redemptions`}
             />
           </ModalBody>
         </ModalContent>
