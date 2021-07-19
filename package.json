@@ -111,6 +111,7 @@
     "react-router-dom": "^5.2.0",
     "react-use": "^17.2.4",
     "twitch": "^4.6.0",
-    "twitch-pubsub-client": "^4.6.0"
+    "twitch-pubsub-client": "^4.6.0",
+    "update-electron-app": "^2.0.1"
   }
 }
