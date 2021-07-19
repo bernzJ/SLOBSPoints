@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap");
+html, body {
+  font-family: "Quicksand", sans-serif;
+  background-color: transparent;
+  color: #fed964;
+  padding: 0;
+  margin: 0;
+}
+
+#eye {
+  opacity: 0;
+  height: 100px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#eye svg {
+  fill: #fff;
+  height: 40px;
+}
+
+#eye svg #path823 {
+  clip-rule: evenodd;
+  display: inline;
+  fill: #ffffff00;
+  fill-rule: evenodd;
+  stroke: #8f7744;
+  stroke-opacity: "revert";
+}
+
+#eye svg #path829 {
+  clip-rule: evenodd;
+  display: inline;
+  fill: #ffffff00;
+  fill-rule: evenodd;
+  stroke: #fcbe45;
+  stroke-opacity: "revert";
+}
+
+#eye svg #path828 {
+  clip-rule: evenodd;
+  display: inline;
+  fill: #ffffff;
+  stroke: #5d4812;
+  stroke-opacity: "revert";
+}
+
+#message {
+  margin-left: 20px;
+  color: #fff;
+  font-weight: 600;
+}

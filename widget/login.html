@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SLOBSPoints</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+    body,
+    html {
+      font-family: 'Montserrat', sans-serif;
+      background-color: transparent;
+      color: #fff;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .flex-col {
+      flex-direction: column;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .justify-space {
+      justify-content: space-between;
+    }
+
+    .align-center {
+      align-items: center;
+    }
+
+    .container {
+      width: 60%;
+      margin: auto;
+    }
+
+    .p-5 {
+      padding: 25px;
+    }
+
+    .pb-5 {
+      padding-bottom: 50px;
+    }
+
+    #loading,
+    #failed,
+    #success {
+      display: none;
+    }
+
+
+    .spinner {
+      -webkit-animation: rotate 2s linear infinite;
+      animation: rotate 2s linear infinite;
+      z-index: 2;
+      margin: -25px 0 0 -25px;
+      width: 50px;
+      height: 50px;
+    }
+
+    .spinner .path {
+      stroke: #fff;
+      stroke-linecap: round;
+      -webkit-animation: dash 1.5s ease-in-out infinite;
+      animation: dash 1.5s ease-in-out infinite;
+    }
+
+    @-webkit-keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @-webkit-keyframes dash {
+      0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+      }
+
+      50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+      }
+
+      100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+      }
+    }
+
+    @keyframes dash {
+      0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+      }
+
+      50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+      }
+
+      100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container flex justify-center p-5">
+    <div class="flex flex-col">
+      <div id="loading" class="justify-center">
+        <svg class="spinner" viewBox="0 0 50 50">
+          <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+        </svg>
+      </div>
+      <div id="failed" class="flex-col pb-5">
+        <div class="flex align-center justify-space">
+          <h3>Status:</h3>
+          <h3 style="color: rgb(189, 77, 77);margin-left: 5px;">Failed</h3>
+        </div>
+        Ops, something went wrong:
+        <div id="error">
+        </div>
+      </div>
+
+      <div id="success" class="flex-col pb-5">
+        <div class="flex align-center justify-space">
+          <h3>Status:</h3>
+          <h3 style="color: rgb(40, 129, 37);margin-left: 5px;">Success</h3>
+        </div>
+        You can now close this
+        <div id="error">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const hashMatch = function (expr, hash) {
+        const match = hash.match(expr);
+        return match ? match[1] : null;
+      };
+
+      const displayError = function (e) {
+        document.getElementById("error").innerText = e.message;
+        document.getElementById("failed").style.display = "flex";
+      }
+
+      const fragment = hashMatch(/access_token=(\w+)/, document.location.hash);
+      const error = hashMatch(/error=(\w+)/, document.location.hash);
+      const clientId = hashMatch(/state=(\w+)/, document.location.hash);
+
+      if (error) {
+        displayError({ message: error })
+      }
+
+      if (fragment && clientId) {
+
+        window.top.postMessage(
+          {
+            oAuth: fragment,
+          },
+          "*"
+        );
+        document.getElementById("success").style.display = "flex";
+        // document.getElementById("loading").style.display = "flex";
+        // fetch("https://api.twitch.tv/helix/users", {
+        //   method: "GET",
+        //   headers: {
+        //     "Client-ID": clientId,
+        //     "Authorization": `Bearer ${fragment}`
+        //   }
+        // })
+        //   .then(function (response) {
+        //     return response.json();
+        //   })
+        //   .then(function ({ data }) {
+        //     window.top.postMessage(
+        //       {
+        //         oAuth: fragment,
+        //       },
+        //       "*"
+        //     );
+        //   }).then(function () {
+        //     document.getElementById("success").style.display = "flex";
+        //   })
+        //   .catch(function (e) {
+        //     displayError(e);
+        //   })
+        //   .finally(function () {
+        //     document.getElementById("loading").style.display = "none";
+        //   });
+      }
+    }, false);
+  </script>
+</body>
+
+</html>
