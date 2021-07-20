@@ -26,8 +26,22 @@ Hover the green/red square to see app's state. Click on it to display the twitch
 
 Follow `twitch` authentication process to allow your new app to access your twitch's data. Once logged, you can close the modal.
 
-We use the following scopes:
+We use the following scope:
 `channel:read:redemptions` for subscribing to the pub/sub event for channel points.
+
+##### Streamlabs Browser Source
+
+This allow the app to display a custom widget via Streamlab's chrome implementation.
+Add a new browser source and set it as following:
+
+*note that we don't prefix url with "https" or "http"*
+URL: `localhost:8080`
+
+*these would be your widget's size set in the css code*
+Width: `200`
+Height: `100`
+
+![UI](https://github.com/bernzJ/SLOBSPoints/blob/master/screenshots/slobs.gif)
 
 #### Special thanks to
 
