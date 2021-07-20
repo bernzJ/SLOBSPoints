@@ -32,14 +32,14 @@ We use the following scope:
 ##### Streamlabs Browser Source
 
 This allow the app to display a custom widget via Streamlab's chrome implementation.
-Add a new browser source and set it as following:
 
-*note that we don't prefix url with "https" or "http"*
-URL: `localhost:8080`
+> Add a new browser source and set it as following:
 
-*these would be your widget's size set in the css code*
-Width: `200`
-Height: `100`
+| Key    | Value            | NB                                       |
+| :----- | :--------------- | :--------------------------------------- |
+| URL    | `localhost:8080` | Don't prefix url with "https" or "http"  |
+| Width  | `200`            | your widget's width set in the css code  |
+| Height | `100`            | your widget's Height set in the css code |
 
 ![UI](https://github.com/bernzJ/SLOBSPoints/blob/master/screenshots/slobs.gif)
 
